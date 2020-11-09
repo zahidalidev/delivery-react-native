@@ -15,6 +15,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import FormScreen from './screen/FormScreen';
+import BankDetails from './screen/BankDetails';
 
 const Stack = createDrawerNavigator();
 
@@ -23,7 +24,8 @@ const App: () => React$Node = () => {
     <>
       <StatusBar barStyle="light-content" backgroundColor="#29405A" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="BankDetails" >
+          <Stack.Screen name="BankDetails">{(props) => <BankDetails {...props} />}</Stack.Screen>
           <Stack.Screen name="FormScreen">{(props) => <FormScreen {...props} />}</Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
