@@ -28,32 +28,33 @@ class BankDetails extends Component {
         const { focus } = this.state;
         return (
             <View style={styles.container}>
-                <View style={{ flexDirection: "row" }} >
-                    <Icon name="chevron-left" size={20} color="white" style={styles.icon} />
-                    <Text style={styles.TextAboveCard} >معلومات حسابي البنكي</Text>
-                </View>
+                <ScrollView style={{ width: "100%" }} >
+                    <View style={{ flexDirection: "row", marginBottom: 10, top: 60, marginLeft: 100 }} >
+                        <Icon onPress={() => this.props.navigation.navigate("FormScreen")} name="chevron-left" size={20} color="white" style={styles.iconBack} />
+                        <Text style={styles.TextAboveCard} >معلومات حسابي البنكي</Text>
+                    </View>
 
-                <Image style={styles.Card} source={require("../assets/Card.png")} />
-                <View style={styles.formContainer} >
-                    <ScrollView style={styles.scrollView}>
+                    <Image style={styles.Card} source={require("../assets/Card.png")} />
+                    <View style={styles.formContainer} >
                         {form.map((feild, i) => (
                             <View key={i} style={[styles.inputFeildContainer, focus == feild.name ? { borderColor: "#fcb445", borderWidth: 2 } : null]} >
                                 {feild.icon && <Icon name={feild.icon} size={20} color={focus == feild.name ? "#fcb445" : "#d3d3d3"} style={styles.icon} />}
                                 <Input
                                     style={styles.inputFeildText}
                                     onFocus={() => this.setState({ focus: feild.name })}
+                                    placeholder={feild.name}
                                 />
-                                <Text style={[styles.placeHolderText, focus == feild.name ? { color: "black" } : { color: "#d3d3d3" }]} >{feild.name}</Text>
+                                {/* <Text style={[styles.placeHolderText, { color: "black" }]} ></Text> */}
                             </View>
                         ))
                         }
 
                         <Image style={styles.textAboveButton} source={require("../assets/bankDetailsAboveButtonText.png")} />
-                        <TouchableOpacity style={styles.submitButton} onPress={() => console.log("submit button clicked")} >
+                        <TouchableOpacity style={styles.submitButton} onPress={() => this.props.navigation.navigate("Otp")} >
                             <Text style={styles.buttonText}>التالي</Text>
                         </TouchableOpacity>
-                    </ScrollView>
-                </View>
+                    </View>
+                </ScrollView>
             </View>
         );
     }
@@ -69,16 +70,13 @@ const styles = StyleSheet.create({
     },
     Card: {
         position: "absolute",
-        top: 130,
+        top: 120,
+        left: 15
     },
 
     formContainer: {
-        marginTop: 250,
-        marginLeft: "14%",
-        width: "100%",
-    },
-
-    scrollView: {
+        marginTop: 310,
+        marginLeft: "7%",
         width: "100%",
     },
 
@@ -91,6 +89,12 @@ const styles = StyleSheet.create({
         padding: 15,
         marginVertical: 10,
         alignItems: "center",
+    },
+
+    iconBack: {
+        marginRight: -15,
+        right: "110%",
+        fontSize: 35
     },
 
     icon: {
@@ -140,7 +144,8 @@ const styles = StyleSheet.create({
         fontSize: 25,
         marginBottom: 45,
         alignSelf: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        marginRight: 30
     },
 })
 

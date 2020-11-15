@@ -57,14 +57,16 @@ class FormScreen extends Component {
                                 <Input
                                     style={styles.inputFeildText}
                                     onFocus={() => this.setState({ focus: feild.name })}
+                                    placeholder={feild.name}
+                                    placeholderTextColor="#d3d3d3"
                                 />
-                                <Text style={[styles.placeHolderText, focus == feild.name ? { color: "black" } : { color: "#d3d3d3" }]} >{feild.name}</Text>
+                                {/* <Text style={[styles.placeHolderText, focus == feild.name ? { color: "black" } : { color: "#d3d3d3" }]} >{feild.name}</Text> */}
                             </View>
                         ))
                         }
 
                         <Text style={styles.textAboveButton}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indust</Text>
-                        <TouchableOpacity style={styles.submitButton} onPress={() => console.log("submit button clicked")} >
+                        <TouchableOpacity style={styles.submitButton} onPress={() => this.props.navigation.navigate("BankDetails")} >
                             <Text style={styles.buttonText}>submit</Text>
                         </TouchableOpacity>
                         <Text style={styles.textBelowButton}>Lorem Ipsum is simply text of the</Text>
